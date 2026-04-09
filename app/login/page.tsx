@@ -1,3 +1,4 @@
+import API_URL from "@/app/lib/config";
 "use client";
 
 import Link from "next/link";
@@ -19,7 +20,7 @@ export default function LoginPage() {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/login", {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

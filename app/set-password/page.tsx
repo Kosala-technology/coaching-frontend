@@ -1,3 +1,4 @@
+import API_URL from "@/app/lib/config";
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ export default function SetPasswordPage() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:5000/api/auth/set-password", {
+      const res = await fetch(`${API_URL}/auth/set-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

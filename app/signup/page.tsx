@@ -1,3 +1,4 @@
+import API_URL from "@/app/lib/config";
 "use client";
 
 import Link from "next/link";
@@ -28,7 +29,7 @@ export default function SignupPage() {
         const userInfo = await userInfoRes.json();
 
         const res = await fetch(
-          "http://localhost:5000/api/auth/google-signup",
+          `${API_URL}/auth/google-signup`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -67,7 +68,7 @@ export default function SignupPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/auth/signup", {
+      const res = await fetch(`${API_URL}/auth/google-signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
