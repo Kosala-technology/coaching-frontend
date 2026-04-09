@@ -1,6 +1,6 @@
-import API_URL from "@/app/lib/config";
 "use client";
 
+import API_URL from "@/app/lib/config";
 import Link from "next/link";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
