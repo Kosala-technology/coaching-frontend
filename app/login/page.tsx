@@ -5,35 +5,33 @@ import Link from "next/link";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async () => {
     if (!email || !password) {
       alert("Please enter email and password");
       return;
     }
-
     setLoading(true);
     try {
       const res = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
       const data = await res.json();
-
       if (res.ok) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
         alert("Login successful! Welcome back.");
+        router.push("/dashboard");
       } else {
         alert(data.message || "Login failed. Please try again.");
       }
